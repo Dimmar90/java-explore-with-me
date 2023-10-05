@@ -1,3 +1,4 @@
+#TEST
 version: '3.1'
 services:
   stats-server:
