@@ -7,5 +7,5 @@ create TABLE IF NOT EXISTS endpoint_hit
     uri       VARCHAR(200)                            NOT NULL,
     ip        VARCHAR(200)                            NOT NULL,
     timestamp TIMESTAMP,
-    CONSTRAINT pk_endpoint_hit PRIMARY KEY (id),
+    CONSTRAINT pk_endpoint_hit PRIMARY KEY (id)
 );
