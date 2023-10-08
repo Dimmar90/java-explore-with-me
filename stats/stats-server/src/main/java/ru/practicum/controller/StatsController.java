@@ -1,12 +1,9 @@
-package ru.practicum.stats.controller;
+package ru.practicum.controller;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import ru.practicum.stats.model.StatsRecord;
-import ru.practicum.stats.service.StatsService;
+import org.springframework.web.bind.annotation.*;
+import ru.practicum.model.StatsRecord;
+import ru.practicum.service.StatsService;
 
 import javax.validation.Valid;
 

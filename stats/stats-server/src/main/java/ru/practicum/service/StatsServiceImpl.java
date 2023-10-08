@@ -1,9 +1,9 @@
-package ru.practicum.stats.service;
+package ru.practicum.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import ru.practicum.stats.model.StatsRecord;
-import ru.practicum.stats.repository.StatsRepository;
+import ru.practicum.model.StatsRecord;
+import ru.practicum.repository.StatsRepository;
 
 @Slf4j
 @Service

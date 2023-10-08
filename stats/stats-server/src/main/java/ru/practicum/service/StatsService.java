@@ -1,6 +1,5 @@
-package ru.practicum.stats.service;
-
-import ru.practicum.stats.model.StatsRecord;
+package ru.practicum.service;
+import ru.practicum.model.StatsRecord;
 
 public interface StatsService {
     String addStatsRecord(StatsRecord statsRecord);
