@@ -1,14 +1,17 @@
 package ru.practicum;
 
-import lombok.Data;
+import lombok.*;
 
+@Builder
 @Data
-public class EndpointHit {
+@NoArgsConstructor
+@ToString
+public class ViewStatsDto {
     private String app;
     private String uri;
     private Long hits;
 
-    public EndpointHit(String app, String uri, Long hits) {
+    public ViewStatsDto(String app, String uri, Long hits) {
         this.app = app;
         this.uri = uri;
         this.hits = hits;
