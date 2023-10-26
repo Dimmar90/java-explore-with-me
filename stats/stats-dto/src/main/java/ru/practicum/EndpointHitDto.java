@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @ToString
 public class EndpointHitDto {
+    private Long id;
     @NotEmpty
     private String app;
     @NotEmpty
