@@ -24,11 +24,12 @@ public interface EventRepository extends JpaRepository<Event, Long> {
             "AND (:categories IS NULL OR e.category.id IN :categories) " +
             "AND (e.eventDate BETWEEN :rangeStart AND :rangeEnd)) ")
     List<Event> findEventsByAdmin(@Param("users") List<Long> users,
-                               @Param("states") List<EventState> states,
-                               @Param("categories") List<Long> categories,
-                               @Param("rangeStart") LocalDateTime rangeStart,
-                               @Param("rangeEnd") LocalDateTime rangeEnd,
-                               Pageable pageable);
+                                  @Param("states") List<EventState> states,
+                                  @Param("categories") List<Long> categories,
+                                  @Param("rangeStart") LocalDateTime rangeStart,
+                                  @Param("rangeEnd") LocalDateTime rangeEnd,
+                                  Pageable pageable);
+
     @Query(value = "SELECT * FROM events e " +
             "WHERE (e.state = 'PUBLISHED')" +
             "AND (LOWER(e.annotation) LIKE LOWER(CONCAT('%', :text, '%')) OR LOWER(e.description) LIKE LOWER(CONCAT('%', :text, '%'))) " +

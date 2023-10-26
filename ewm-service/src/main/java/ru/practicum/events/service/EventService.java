@@ -2,7 +2,6 @@ package ru.practicum.events.service;
 
 import ru.practicum.events.dto.*;
 import ru.practicum.events.model.EventParam;
-import ru.practicum.requests.dto.ParticipationRequestDto;
 import ru.practicum.requests.dto.RequestDto;
 
 import javax.servlet.http.HttpServletRequest;

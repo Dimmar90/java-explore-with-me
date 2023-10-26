@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.practicum.requests.dto.ParticipationRequestDto;
 import ru.practicum.requests.dto.RequestDto;
 
 import java.util.List;

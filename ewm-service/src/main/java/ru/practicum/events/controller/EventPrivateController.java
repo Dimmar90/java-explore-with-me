@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.events.dto.*;
 import ru.practicum.events.service.EventService;
-import ru.practicum.requests.dto.ParticipationRequestDto;
 import ru.practicum.requests.dto.RequestDto;
 
 import javax.validation.Valid;
@@ -28,7 +27,6 @@ public class EventPrivateController {
                                 @Valid @RequestBody CreatedEventDto createdEvent) {
         return eventService.createEvent(userId, createdEvent);
     }
-
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<EventShortDto> getEventsByInitiator(@PathVariable Long userId,
@@ -36,21 +34,18 @@ public class EventPrivateController {
                                                     @RequestParam(value = "size", defaultValue = "10") @PositiveOrZero Integer size) {
         return eventService.getEventsByInitiator(userId, from, size);
     }
-
     @GetMapping("/{eventId}")
     @ResponseStatus(HttpStatus.OK)
     public EventDto getEventByIdAndInitiator(@PathVariable Long userId,
                                              @PathVariable Long eventId) {
         return eventService.getEventByIdAndInitiator(userId, eventId);
     }
-
     @GetMapping("/{eventId}/requests")
     @ResponseStatus(HttpStatus.OK)
     public List<RequestDto> getRequestsByInitiatorId(@PathVariable Long userId,
                                                      @PathVariable Long eventId) {
         return eventService.getRequestsByInitiatorId(eventId, userId);
     }
-
     @PatchMapping("/{eventId}")
     @ResponseStatus(HttpStatus.OK)
     public EventDto updateEventByUser(@PathVariable Long userId,
@@ -58,7 +53,6 @@ public class EventPrivateController {
                                       @Valid @RequestBody UpdatedByUserEvent updatedByUserEvent) {
         return eventService.updateEventByUser(userId, eventId, updatedByUserEvent);
     }
-
     @PatchMapping("/{eventId}/requests")
     @ResponseStatus(HttpStatus.OK)
     public UpdatedRequestStatusResult updateRequestStatus(@PathVariable Long userId,

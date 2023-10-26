@@ -12,8 +12,6 @@ import ru.practicum.compilations.dto.CreatedCompilation;
 import ru.practicum.compilations.dto.UpdatedCompilation;
 import ru.practicum.compilations.model.Compilation;
 import ru.practicum.compilations.repository.CompilationRepository;
-import ru.practicum.events.dto.EventMapper;
-import ru.practicum.events.dto.EventShortDto;
 import ru.practicum.events.model.Event;
 import ru.practicum.events.repository.EventRepository;
 import ru.practicum.exception.BadRequestException;
