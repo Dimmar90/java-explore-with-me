@@ -2,44 +2,49 @@ package ru.practicum.client;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
-import org.springframework.web.util.DefaultUriBuilderFactory;
+import org.springframework.web.reactive.function.BodyInserters;
+import org.springframework.web.reactive.function.client.ClientResponse;
+import org.springframework.web.reactive.function.client.WebClient;
 import ru.practicum.EndpointHitDto;
+import ru.practicum.ViewStatsDto;
 
-import java.util.Map;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @Service
-public class StatsClient extends BaseClient {
+public class StatsClient {
+
+    private final WebClient webClient;
 
     @Autowired
-    public StatsClient(@Value("${stats.service.url}") String serverUrl, RestTemplateBuilder builder) {
-        super(
-                builder
-                        .uriTemplateHandler(new DefaultUriBuilderFactory(serverUrl))
-                        .requestFactory(HttpComponentsClientHttpRequestFactory::new)
-                        .build()
-        );
+    public StatsClient(@Value("${ewm.server.url}") String serverUrl) {
+        webClient = WebClient.builder().baseUrl(serverUrl).build();
     }
 
-    public ResponseEntity<Object> addEndpointHitDto(EndpointHitDto endpointHitDto) {
-        return post("/hit", endpointHitDto);
+    public ClientResponse createEndpointHit(EndpointHitDto endpointHit) {
+
+        return webClient.post()
+                .uri("/hit")
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(BodyInserters.fromValue(endpointHit))
+                .exchange().block();
     }
 
-    public ResponseEntity<Object> getStats(String start, String end, String[] uris, Boolean unique) {
+    public List<ViewStatsDto> getStats(LocalDateTime start, LocalDateTime end, List<String> uris, Boolean unique) {
 
-        if (start != null && end != null && unique != null) {
-            Map<String, Object> parameters = Map.of(
-                    "start", start,
-                    "end", end,
-                    "uris", uris,
-                    "unique", unique
-            );
-            return get("/stats?start={start}&end={end}&uris=" + uris[0] + "&unique={unique}", parameters);
-        }
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        return webClient.get()
+                .uri("/stats?start={start}&end={end}&uris={uris}&unique={unique}",
+                        start.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
+                        end.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
+                        String.join(",", uris),
+                        unique)
+                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                .retrieve()
+                .bodyToFlux(ViewStatsDto.class)
+                .collectList().block();
     }
 }

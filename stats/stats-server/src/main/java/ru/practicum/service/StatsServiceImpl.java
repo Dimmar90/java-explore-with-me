@@ -1,55 +1,48 @@
 package ru.practicum.service;
 
-import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
-import ru.practicum.exception.BadRequestException;
-import ru.practicum.model.StatsRecord;
-import ru.practicum.repository.StatsRepository;
-import ru.practicum.EndpointHitDto;
-
-import static ru.practicum.mapper.StatsMapper.fromEndpointHitDto;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import ru.practicum.ViewStatsDto;
+import ru.practicum.exception.BadRequestException;
+import ru.practicum.mapper.StatsMapper;
+import ru.practicum.EndpointHitDto;
+import ru.practicum.model.StatsRecord;
+import ru.practicum.repository.StatsRepository;
 
-import java.util.List;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 @Slf4j
+@RequiredArgsConstructor
 public class StatsServiceImpl implements StatsService {
 
     private final StatsRepository statsRepository;
 
     @Override
-    public String addStatsRecord(EndpointHitDto endpointHitDto) {
-        StatsRecord statsRecord = fromEndpointHitDto(endpointHitDto);
-        statsRepository.save(statsRecord);
-        log.info("Statistic record added to: {}", endpointHitDto.getUri());
-        return "Statistic record added";
+    @Transactional
+    public EndpointHitDto create(EndpointHitDto endpointHit) {
+        StatsRecord statsToSave = StatsMapper.getStatsRecord(endpointHit);
+        statsRepository.save(statsToSave);
+        log.info("Add stats record with id: {}", statsToSave.getId());
+        return StatsMapper.getStatsHitDto(statsToSave);
     }
 
     @Override
     public List<ViewStatsDto> getStats(LocalDateTime start, LocalDateTime end, List<String> uris, Boolean unique) {
         if (end.isBefore(start)) {
-            throw new BadRequestException("Wrong parameter end");
+            throw new BadRequestException("");
         }
-        if (unique) {
-            if (uris == null) {
-                log.info("Get stats by unique without URI: {}", statsRepository.getStatsByUniqueWithoutUris(start, end));
-                return statsRepository.getStatsByUniqueWithoutUris(start, end);
-            }
-            log.info("Get stats by unique: {}", statsRepository.getStatsByUniqueWithUris(start, end, uris));
-            return statsRepository.getStatsByUniqueWithUris(start, end, uris);
+        if (unique.equals(false)) {
+            log.info("Get all stats by uris: {}", uris);
+            return statsRepository.findStatsByUri(uris, start, end).stream().map(StatsMapper::getViewStatDto).collect(Collectors.toList());
         } else {
-            if (uris == null) {
-                log.info("Get stats without unique and uris: {}", statsRepository.getStatsWithoutUnique(start, end));
-                return statsRepository.getStatsWithoutUnique(start, end);
-            }
-            log.info("Get all stats: {}", statsRepository.getStats(start, end, uris));
-            return statsRepository.getStats(start, end, uris);
+            log.info("Get unique stats by uris: {}", uris);
+            return statsRepository.findUniqueStatsByUri(uris, start, end).stream().map(StatsMapper::getViewStatDto).collect(Collectors.toList());
         }
     }
 }
