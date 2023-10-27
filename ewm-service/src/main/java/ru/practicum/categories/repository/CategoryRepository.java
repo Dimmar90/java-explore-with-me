@@ -8,7 +8,5 @@ import ru.practicum.categories.model.Category;
 public interface CategoryRepository extends JpaRepository<Category, Long> {
     Page<Category> findAll(Pageable pageable);
 
-    void deleteCategoryById(Long catid);
-
     boolean existsCategoryByName(String name);
 }

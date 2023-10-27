@@ -31,8 +31,10 @@ public class EventPrivateController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<EventShortDto> getEventsByInitiator(@PathVariable Long userId,
-                                                    @RequestParam(value = "from", defaultValue = "0") @PositiveOrZero Integer from,
-                                                    @RequestParam(value = "size", defaultValue = "10") @PositiveOrZero Integer size) {
+                                                    @RequestParam(value = "from", defaultValue = "0")
+                                                    @PositiveOrZero Integer from,
+                                                    @RequestParam(value = "size", defaultValue = "10")
+                                                    @PositiveOrZero Integer size) {
         return eventService.getEventsByInitiator(userId, from, size);
     }
 

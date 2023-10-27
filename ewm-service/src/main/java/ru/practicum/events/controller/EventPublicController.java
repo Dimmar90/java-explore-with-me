@@ -31,15 +31,17 @@ public class EventPublicController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<EventShortDto> getPublicEventsWithFiltration(@RequestParam(defaultValue = "") String text,
-                                            @RequestParam(required = false) List<Long> categories,
-                                            @RequestParam(required = false) Boolean paid,
-                                            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime rangeStart,
-                                            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime rangeEnd,
-                                            @RequestParam(defaultValue = "false") Boolean onlyAvailable,
-                                            @RequestParam(defaultValue = "VIEWS") SortState sort,
-                                            @Valid @RequestParam(defaultValue = "0") @PositiveOrZero Integer from,
-                                            @Valid @RequestParam(defaultValue = "10") @Positive Integer size,
-                                            HttpServletRequest request) {
+                                                             @RequestParam(required = false) List<Long> categories,
+                                                             @RequestParam(required = false) Boolean paid,
+                                                             @RequestParam(required = false)
+                                                             @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime rangeStart,
+                                                             @RequestParam(required = false)
+                                                             @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime rangeEnd,
+                                                             @RequestParam(defaultValue = "false") Boolean onlyAvailable,
+                                                             @RequestParam(defaultValue = "VIEWS") SortState sort,
+                                                             @Valid @RequestParam(defaultValue = "0") @PositiveOrZero Integer from,
+                                                             @Valid @RequestParam(defaultValue = "10") @Positive Integer size,
+                                                             HttpServletRequest request) {
 
         if (rangeStart == null) {
             rangeStart = LocalDateTime.now();

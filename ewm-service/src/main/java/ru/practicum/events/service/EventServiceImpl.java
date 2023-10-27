@@ -140,11 +140,15 @@ public class EventServiceImpl implements EventService {
                 .timestamp(LocalDateTime.now())
                 .build());
 
-        List<Event> searchingEventsFromDb = eventRepository.findAllPublic(eventParam.getText(), eventParam.getCategories(), eventParam.getPaid(),
-                eventParam.getRangeStart(), eventParam.getRangeEnd(), eventParam.getPageable());
+        List<Event> searchingEventsFromDb = eventRepository.findAllPublic(eventParam.getText(),
+                eventParam.getCategories(),
+                eventParam.getPaid(),
+                eventParam.getRangeStart(),
+                eventParam.getRangeEnd(), eventParam.getPageable());
 
         if (eventParam.getOnlyAvailable()) {
-            searchingEventsFromDb = searchingEventsFromDb.stream().filter(x -> x.getParticipantLimit().equals(0)).collect(Collectors.toList());
+            searchingEventsFromDb = searchingEventsFromDb.stream()
+                    .filter(x -> x.getParticipantLimit().equals(0)).collect(Collectors.toList());
         }
 
         for (Event event : searchingEventsFromDb) {
@@ -178,9 +182,11 @@ public class EventServiceImpl implements EventService {
         }
 
         if (eventParam.getSort().equals(SortState.EVENT_DATE)) {
-            eventsWithFiltration = eventsWithFiltration.stream().sorted(Comparator.comparing(EventShortDto::getEventDate)).collect(Collectors.toList());
+            eventsWithFiltration = eventsWithFiltration.stream()
+                    .sorted(Comparator.comparing(EventShortDto::getEventDate)).collect(Collectors.toList());
         } else if (eventParam.getSort().equals(SortState.VIEWS)) {
-            eventsWithFiltration = eventsWithFiltration.stream().sorted(Comparator.comparing(EventShortDto::getViews)).collect(Collectors.toList());
+            eventsWithFiltration = eventsWithFiltration.stream()
+                    .sorted(Comparator.comparing(EventShortDto::getViews)).collect(Collectors.toList());
         }
 
         log.info("Get public events with filtration");
@@ -208,9 +214,11 @@ public class EventServiceImpl implements EventService {
 
         EventDto searchingEventById = EventMapper.getEventDto(searchingEventFromDb);
 
-        searchingEventById.setConfirmedRequests(requestRepository.countByEventIdAndStatus(searchingEventFromDb.getId(), RequestState.CONFIRMED));
+        searchingEventById.setConfirmedRequests(requestRepository
+                .countByEventIdAndStatus(searchingEventFromDb.getId(), RequestState.CONFIRMED));
 
-        List<ViewStatsDto> views = statsClient.getStats(LocalDateTime.now().minusYears(100), LocalDateTime.now().plusYears(100),
+        List<ViewStatsDto> views = statsClient.getStats(LocalDateTime.now().minusYears(100),
+                LocalDateTime.now().plusYears(100),
                 List.of("/events/" + id), true);
 
         searchingEventById.setViews(views.get(0).getHits());
@@ -256,12 +264,14 @@ public class EventServiceImpl implements EventService {
         if (updatedByAdminEvent.getStateAction() != null) {
             if (updatedByAdminEvent.getStateAction().equals(StateActionAdminRequest.PUBLISH_EVENT) &&
                     !eventToUpdate.getState().equals(EventState.PENDING)) {
-                throw new ConflictException("Cannot publish the event because it's not in the right state: " + eventToUpdate.getState());
+                throw new ConflictException("Cannot publish the event because it's not in the right state: "
+                        + eventToUpdate.getState());
             }
 
             if (updatedByAdminEvent.getStateAction().equals(StateActionAdminRequest.REJECT_EVENT) &&
                     eventToUpdate.getState().equals(EventState.PUBLISHED)) {
-                throw new ConflictException("Cannot reject the event because it's not in the right state: " + eventToUpdate.getState());
+                throw new ConflictException("Cannot reject the event because it's not in the right state: "
+                        + eventToUpdate.getState());
             }
         }
 

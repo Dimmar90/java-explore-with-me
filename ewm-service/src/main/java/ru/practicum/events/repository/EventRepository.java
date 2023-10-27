@@ -10,6 +10,7 @@ import ru.practicum.events.model.Event;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 public interface EventRepository extends JpaRepository<Event, Long> {
 
@@ -32,7 +33,8 @@ public interface EventRepository extends JpaRepository<Event, Long> {
 
     @Query(value = "SELECT * FROM events e " +
             "WHERE (e.state = 'PUBLISHED')" +
-            "AND (LOWER(e.annotation) LIKE LOWER(CONCAT('%', :text, '%')) OR LOWER(e.description) LIKE LOWER(CONCAT('%', :text, '%'))) " +
+            "AND (LOWER(e.annotation) LIKE LOWER(CONCAT('%', :text, '%')) OR LOWER(e.description) " +
+            "LIKE LOWER(CONCAT('%', :text, '%'))) " +
             "AND ((:categories) IS NULL OR e.category_id IN (:categories))" +
             "AND ((:paid) IS NULL OR e.paid = :paid)" +
             "AND (e.event_date BETWEEN :rangeStart AND :rangeEnd)", nativeQuery = true)
@@ -42,4 +44,8 @@ public interface EventRepository extends JpaRepository<Event, Long> {
                               @Param("rangeStart") LocalDateTime rangeStart,
                               @Param("rangeEnd") LocalDateTime rangeEnd,
                               Pageable pageable);
+
+    Boolean existsEventsByIdIn(List<Long> ids);
+
+    Set<Event> findAllByIdIn(List<Long> ids);
 }

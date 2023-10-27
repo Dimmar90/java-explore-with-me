@@ -35,17 +35,16 @@ public class CompilationServiceImpl implements CompilationService {
     @Transactional
     public CompilationDto createCompilation(CreatedCompilation createdCompilation) {
 
-        if (createdCompilation.getTitle() == null || createdCompilation.getTitle().isEmpty() || createdCompilation.getTitle().isBlank()) {
+        if (createdCompilation.getTitle() == null || createdCompilation.getTitle().isEmpty()
+                || createdCompilation.getTitle().isBlank()) {
             throw new BadRequestException("Field: title. Error: must not be blank. Value: null");
         }
 
         Set<Event> events = new HashSet<>();
 
         if (createdCompilation.getEvents() != null) {
-            for (Long eventId : createdCompilation.getEvents()) {
-                Event event = eventRepository.findById(eventId)
-                        .orElseThrow(() -> new NotFoundException("Event with id=" + eventId + " was not found"));
-                events.add(event);
+            if (eventRepository.existsEventsByIdIn(createdCompilation.getEvents())) {
+                events = eventRepository.findAllByIdIn(createdCompilation.getEvents());
             }
         }
 
@@ -84,12 +83,8 @@ public class CompilationServiceImpl implements CompilationService {
         }
 
         if (updatedCompilation.getEvents() != null) {
-            for (Long eventId : updatedCompilation.getEvents()) {
-                Event event = eventRepository.findById(eventId)
-                        .orElseThrow(() -> new NotFoundException("Event with id=" + eventId + " was not found"));
-                if (!events.contains(event)) {
-                    events.add(event);
-                }
+            if (eventRepository.existsEventsByIdIn(updatedCompilation.getEvents())) {
+                events = eventRepository.findAllByIdIn(updatedCompilation.getEvents());
             }
         }
 

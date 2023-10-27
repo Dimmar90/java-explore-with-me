@@ -41,8 +41,10 @@ public class CategoryServiceImpl implements CategoryService {
     public Category updateCategory(Long catId, Category updatedCategory) {
         categoryNameValidation(updatedCategory.getName());
         Category categoryToUpdate = getCategoryFromDbById(catId);
-        if (categoryRepository.existsCategoryByName(updatedCategory.getName()) && !updatedCategory.getName().equals(categoryToUpdate.getName())) {
-            throw new ConflictException("Field: name. Error: category '" + updatedCategory.getName() + "' already exist");
+        if (categoryRepository.existsCategoryByName(updatedCategory.getName())
+                && !updatedCategory.getName().equals(categoryToUpdate.getName())) {
+            throw new ConflictException("Field: name. Error: category '" + updatedCategory.getName()
+                    + "' already exist");
         }
         categoryToUpdate.setName(updatedCategory.getName());
         log.info("Updated category with id: {}", catId);
