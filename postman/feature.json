@@ -30,7 +30,7 @@
               "",
               "pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {",
               "    pm.expect(target.id).to.not.be.null;",
-              "    pm.expect(target.id).equal(132);",
+              "    pm.expect(target.id).equal(135);",
               "    pm.expect(target.name).equal(\"User 1\");",
               "    pm.expect(target.email).equal(\"user1@email.com\");",
               "});"
@@ -44,7 +44,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\n   \"name\": \"User 1\",\n   \"email\": \"user1@email.com\"\n}",
+          "raw": "{\n   \"name\": \"Userkjhghj\",\n   \"email\": \"user1ghf@email.com\"\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -90,7 +90,7 @@
               "",
               "pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {",
               "    pm.expect(target.id).to.not.be.null;",
-              "    pm.expect(target.id).equal(133);",
+              "    pm.expect(target.id).equal(136);",
               "    pm.expect(target.name).equal(\"User 2\");",
               "    pm.expect(target.email).equal(\"user2@email.com\");",
               "});"
@@ -297,7 +297,7 @@
           }
         },
         "url": {
-          "raw": "http://localhost:8080/users/132/events",
+          "raw": "http://localhost:8080/users/135/events",
           "protocol": "http",
           "host": [
             "localhost"
@@ -305,7 +305,7 @@
           "port": "8080",
           "path": [
             "users",
-            "132",
+            "135",
             "events"
           ]
         },
@@ -359,7 +359,7 @@
           }
         },
         "url": {
-          "raw": "http://localhost:8080/users/133/comments",
+          "raw": "http://localhost:8080/users/136/comments",
           "protocol": "http",
           "host": [
             "localhost"
@@ -367,7 +367,7 @@
           "port": "8080",
           "path": [
             "users",
-            "133",
+            "136",
             "comments"
           ]
         }
@@ -420,7 +420,7 @@
           }
         },
         "url": {
-          "raw": "http://localhost:8080/users/133/comments",
+          "raw": "http://localhost:8080/users/136/comments",
           "protocol": "http",
           "host": [
             "localhost"
@@ -428,7 +428,7 @@
           "port": "8080",
           "path": [
             "users",
-            "133",
+            "136",
             "comments"
           ]
         }
@@ -463,7 +463,7 @@
           }
         },
         "url": {
-          "raw": "http://localhost:8080/users/133/comments",
+          "raw": "http://localhost:8080/users/136/comments",
           "protocol": "http",
           "host": [
             "localhost"
@@ -471,7 +471,7 @@
           "port": "8080",
           "path": [
             "users",
-            "133",
+            "136",
             "comments"
           ]
         }
@@ -506,7 +506,7 @@
           }
         },
         "url": {
-          "raw": "http://localhost:8080/users/133/comments",
+          "raw": "http://localhost:8080/users/136/comments",
           "protocol": "http",
           "host": [
             "localhost"
@@ -514,7 +514,7 @@
           "port": "8080",
           "path": [
             "users",
-            "133",
+            "136",
             "comments"
           ]
         }
@@ -553,12 +553,12 @@
               "    pm.expect(target[0].id).equal(1);",
               "    pm.expect(target[0].text).equal(\"Comment to event 103\");",
               "    pm.expect(target[0].event.id).equal(103);",
-              "    pm.expect(target[0].author.id).equal(133);",
+              "    pm.expect(target[0].author.id).equal(136);",
               "    pm.expect(target[1].id).to.not.be.null;",
               "    pm.expect(target[1].id).equal(2);",
               "    pm.expect(target[1].text).equal(\"Second comment to event 103\");",
               "    pm.expect(target[1].event.id).equal(103);",
-              "    pm.expect(target[1].author.id).equal(133);",
+              "    pm.expect(target[1].author.id).equal(136);",
               "});"
             ],
             "type": "text/javascript"
@@ -569,7 +569,7 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:8080/users/133/comments",
+          "raw": "http://localhost:8080/users/136/comments",
           "protocol": "http",
           "host": [
             "localhost"
@@ -577,7 +577,7 @@
           "port": "8080",
           "path": [
             "users",
-            "133",
+            "136",
             "comments"
           ]
         }
@@ -612,7 +612,7 @@
               "    pm.expect(target.id).equal(1);",
               "    pm.expect(target.text).equal(\"Updated comment\");",
               "    pm.expect(target.event.id).equal(103);",
-              "    pm.expect(target.author.id).equal(133);",
+              "    pm.expect(target.author.id).equal(136);",
               "});"
             ],
             "type": "text/javascript"
@@ -632,7 +632,7 @@
           }
         },
         "url": {
-          "raw": "http://localhost:8080/users/133/comments/1",
+          "raw": "http://localhost:8080/users/136/comments/1",
           "protocol": "http",
           "host": [
             "localhost"
@@ -640,7 +640,7 @@
           "port": "8080",
           "path": [
             "users",
-            "133",
+            "136",
             "comments",
             "1"
           ]
@@ -676,7 +676,7 @@
           }
         },
         "url": {
-          "raw": "http://localhost:8080/users/133/comments/5",
+          "raw": "http://localhost:8080/users/136/comments/5",
           "protocol": "http",
           "host": [
             "localhost"
@@ -684,7 +684,7 @@
           "port": "8080",
           "path": [
             "users",
-            "133",
+            "136",
             "comments",
             "5"
           ]
@@ -755,7 +755,7 @@
         "method": "DELETE",
         "header": [],
         "url": {
-          "raw": "http://localhost:8080/users/133/comments/2",
+          "raw": "http://localhost:8080/users/136/comments/2",
           "protocol": "http",
           "host": [
             "localhost"
@@ -763,7 +763,7 @@
           "port": "8080",
           "path": [
             "users",
-            "133",
+            "136",
             "comments",
             "2"
           ]
@@ -790,7 +790,7 @@
         "method": "DELETE",
         "header": [],
         "url": {
-          "raw": "http://localhost:8080/users/133/comments/5",
+          "raw": "http://localhost:8080/users/136/comments/5",
           "protocol": "http",
           "host": [
             "localhost"
@@ -798,7 +798,7 @@
           "port": "8080",
           "path": [
             "users",
-            "133",
+            "136",
             "comments",
             "5"
           ]
@@ -838,7 +838,7 @@
               "    pm.expect(target[0].id).equal(1);",
               "    pm.expect(target[0].text).equal(\"Updated comment\");",
               "    pm.expect(target[0].event.id).equal(103);",
-              "    pm.expect(target[0].author.id).equal(133);",
+              "    pm.expect(target[0].author.id).equal(136);",
               "});"
             ],
             "type": "text/javascript"
@@ -849,7 +849,7 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:8080/users/133/comments",
+          "raw": "http://localhost:8080/users/136/comments",
           "protocol": "http",
           "host": [
             "localhost"
@@ -857,7 +857,7 @@
           "port": "8080",
           "path": [
             "users",
-            "133",
+            "136",
             "comments"
           ]
         }
@@ -896,7 +896,7 @@
               "    pm.expect(target[0].id).equal(1);",
               "    pm.expect(target[0].text).equal(\"Updated comment\");",
               "    pm.expect(target[0].event.id).equal(103);",
-              "    pm.expect(target[0].author.id).equal(133);",
+              "    pm.expect(target[0].author.id).equal(136);",
               "});"
             ],
             "type": "text/javascript"
@@ -950,7 +950,7 @@
               "    pm.expect(target.id).equal(1);",
               "    pm.expect(target.text).equal(\"Updated comment\");",
               "    pm.expect(target.event.id).equal(103);",
-              "    pm.expect(target.author.id).equal(133);",
+              "    pm.expect(target.author.id).equal(136);",
               "});"
             ],
             "type": "text/javascript"
