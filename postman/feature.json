@@ -44,7 +44,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\n   \"name\": \"Userkjhghj\",\n   \"email\": \"user1ghf@email.com\"\n}",
+          "raw": "{\n   \"name\": \"User 1\",\n   \"email\": \"user1@email.com\"\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -149,7 +149,7 @@
               "",
               "pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {",
               "    pm.expect(target.id).to.not.be.null;",
-              "    pm.expect(target.id).equal(118);",
+              "    pm.expect(target.id).equal(120);",
               "    pm.expect(target.name).equal(\"спорт\");",
               "});"
             ],
@@ -261,8 +261,8 @@
               "\r",
               "pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {\r",
               "     pm.expect(target.id).to.not.be.null;\r",
-              "    pm.expect(target.id).equal(103);\r",
-              "    pm.expect(target.category.id).equal(118);\r",
+              "    pm.expect(target.id).equal(106);\r",
+              "    pm.expect(target.category.id).equal(120);\r",
               "    pm.expect(target.description).equal(\"Сплав на байдарках похож на полет. На спокойной воде — это парение. На бурной, порожистой — выполнение фигур высшего пилотажа. И то, и другое дарят чувство обновления, феерические эмоции, яркие впечатления.\");\r",
               "    pm.expect(target.eventDate).equal(\"2024-12-31 15:10:05\");\r",
               "    pm.expect(target.paid).equal(true);\r",
@@ -289,7 +289,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"annotation\": \"Сплав на байдарках похож на полет.\",\n  \"category\": 118,\n  \"description\": \"Сплав на байдарках похож на полет. На спокойной воде — это парение. На бурной, порожистой — выполнение фигур высшего пилотажа. И то, и другое дарят чувство обновления, феерические эмоции, яркие впечатления.\",\n  \"eventDate\": \"2024-12-31 15:10:05\",\n  \"location\": {\n    \"lat\": 55.754167,\n    \"lon\": 37.62\n  },\n  \"paid\": true,\n  \"participantLimit\": 10,\n  \"requestModeration\": false,\n  \"title\": \"Сплав на байдарках\"\n}",
+          "raw": "{\n  \"annotation\": \"Сплав на байдарках похож на полет.\",\n  \"category\": 120,\n  \"description\": \"Сплав на байдарках похож на полет. На спокойной воде — это парение. На бурной, порожистой — выполнение фигур высшего пилотажа. И то, и другое дарят чувство обновления, феерические эмоции, яркие впечатления.\",\n  \"eventDate\": \"2024-12-31 15:10:05\",\n  \"location\": {\n    \"lat\": 55.754167,\n    \"lon\": 37.62\n  },\n  \"paid\": true,\n  \"participantLimit\": 10,\n  \"requestModeration\": false,\n  \"title\": \"Сплав на байдарках\"\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -338,8 +338,8 @@
               "pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {",
               "    pm.expect(target.id).to.not.be.null;",
               "    pm.expect(target.id).equal(1);",
-              "    pm.expect(target.text).equal(\"Comment to event 103\");",
-              "    pm.expect(target.event.id).equal(103);",
+              "    pm.expect(target.text).equal(\"Comment to event 106\");",
+              "    pm.expect(target.event.id).equal(106);",
               "});"
             ],
             "type": "text/javascript"
@@ -351,7 +351,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\n   \"text\": \"Comment to event 103\",\n   \"event\": 103\n}",
+          "raw": "{\n   \"text\": \"Comment to event 106\",\n   \"event\": 106\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -399,8 +399,8 @@
               "pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {",
               "    pm.expect(target.id).to.not.be.null;",
               "    pm.expect(target.id).equal(2);",
-              "    pm.expect(target.text).equal(\"Second comment to event 103\");",
-              "    pm.expect(target.event.id).equal(103);",
+              "    pm.expect(target.text).equal(\"Second comment to event 106\");",
+              "    pm.expect(target.event.id).equal(106);",
               "});"
             ],
             "type": "text/javascript"
@@ -412,7 +412,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\n   \"text\": \"Second comment to event 103\",\n   \"event\": 103\n}",
+          "raw": "{\n   \"text\": \"Second comment to event 106\",\n   \"event\": 106\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -455,7 +455,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\n   \"text\": \"comment\",\n   \"event\": 103\n}",
+          "raw": "{\n   \"text\": \"comment\",\n   \"event\": 106\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -557,7 +557,7 @@
               "    pm.expect(target[1].id).to.not.be.null;",
               "    pm.expect(target[1].id).equal(2);",
               "    pm.expect(target[1].text).equal(\"Second comment to event 103\");",
-              "    pm.expect(target[1].event.id).equal(103);",
+              "    pm.expect(target[1].event.id).equal(106);",
               "    pm.expect(target[1].author.id).equal(136);",
               "});"
             ],
@@ -611,7 +611,7 @@
               "    pm.expect(target.id).to.not.be.null;",
               "    pm.expect(target.id).equal(1);",
               "    pm.expect(target.text).equal(\"Updated comment\");",
-              "    pm.expect(target.event.id).equal(103);",
+              "    pm.expect(target.event.id).equal(106);",
               "    pm.expect(target.author.id).equal(136);",
               "});"
             ],
@@ -837,7 +837,7 @@
               "    pm.expect(target[0].id).to.not.be.null;",
               "    pm.expect(target[0].id).equal(1);",
               "    pm.expect(target[0].text).equal(\"Updated comment\");",
-              "    pm.expect(target[0].event.id).equal(103);",
+              "    pm.expect(target[0].event.id).equal(106);",
               "    pm.expect(target[0].author.id).equal(136);",
               "});"
             ],
@@ -895,7 +895,7 @@
               "    pm.expect(target[0].id).to.not.be.null;",
               "    pm.expect(target[0].id).equal(1);",
               "    pm.expect(target[0].text).equal(\"Updated comment\");",
-              "    pm.expect(target[0].event.id).equal(103);",
+              "    pm.expect(target[0].event.id).equal(106);",
               "    pm.expect(target[0].author.id).equal(136);",
               "});"
             ],
@@ -907,7 +907,7 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:8080/comments/events/103",
+          "raw": "http://localhost:8080/comments/events/106",
           "protocol": "http",
           "host": [
             "localhost"
@@ -916,7 +916,7 @@
           "path": [
             "comments",
             "events",
-            "103"
+            "106"
           ]
         }
       },
@@ -949,7 +949,7 @@
               "    pm.expect(target.id).to.not.be.null;",
               "    pm.expect(target.id).equal(1);",
               "    pm.expect(target.text).equal(\"Updated comment\");",
-              "    pm.expect(target.event.id).equal(103);",
+              "    pm.expect(target.event.id).equal(106);",
               "    pm.expect(target.author.id).equal(136);",
               "});"
             ],
